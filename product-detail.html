@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+</head>
+<body>
+  <section class="product-details">
+    <div class="product-details__image">
+      <img id="product-image" src="" alt="Product Image">
+    </div>
+    <div class="product-details__info">
+      <h1 id="product-name"></h1>
+      <p id="product-description"></p>
+      <p id="product-price"></p>
+      <button>Add to Cart</button>
+    </div>
+  </section>
+
+  <script>
+    // Retrieve the selected product from local storage
+    const selectedProduct = JSON.parse(localStorage.getItem('selectedProduct'));
+    
+    if (selectedProduct) {
+      document.getElementById('product-image').src = selectedProduct.images[0] || 'https://via.placeholder.com/300';
+      document.getElementById('product-name').innerText = selectedProduct.title;
+      document.getElementById('product-description').innerText = selectedProduct.description || 'No description available';
+      document.getElementById('product-price').innerText = `Price: $${selectedProduct.price}`;
+    } else {
+      document.body.innerHTML = '<h1>No Product Selected</h1>';
+    }
+  </script>
+</body>
+</html>
